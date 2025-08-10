@@ -26,6 +26,11 @@ app.get('/api/user/v1/product-service', (req, res) => {
   res.status(200).send('product-Service Role Healthy');
 });
 
+app.use((req, res, next) => {
+  console.log(`Received request on instance: ${process.pid} and ${os.hostname()} for ${req.url}`);
+  next();
+});
+
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
